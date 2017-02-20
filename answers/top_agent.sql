@@ -1,12 +1,7 @@
--- Which sales agent made the most in sales in 2009?
--- Hint: Use the MAX (https://www.sqlite.org/lang_aggfunc.html#maxggunc) 
--- function on a subquery
--- (http://beginner-sql-tutorial.com/sql-subquery.htm).
-
-
+-- Which sales agent made the most in sales over all?
 
 SELECT 
-    MAX(i.totalSales) as "2009's Top Performer's Total Sales Value", 
+    MAX(i.totalSales) as "Top Performer's Total Sales Value", 
     e.FirstName as "First Name", 
     e.LastName as "Last Name"
 FROM (
@@ -14,8 +9,7 @@ FROM (
         SUM(i.Total) as "totalSales", 
         i.CustomerId as "CustomerId"
     FROM Invoice i, Employee em, Customer cu
-    WHERE i.InvoiceDate LIKE "2009%"
-    AND i.CustomerId = cu.CustomerId
+    WHERE i.CustomerId = cu.CustomerId
     AND cu.SupportRepId = em.EmployeeId
     GROUP BY em.EmployeeId
 
