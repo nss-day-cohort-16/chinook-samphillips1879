@@ -6,7 +6,7 @@ SELECT
     e.LastName as "Last Name"
 FROM (
     SELECT 
-        SUM(i.Total) as "totalSales", 
+        ROUND(SUM(i.Total), 2) as "totalSales", 
         i.CustomerId as "CustomerId"
     FROM Invoice i, Employee em, Customer cu
     WHERE i.CustomerId = cu.CustomerId
